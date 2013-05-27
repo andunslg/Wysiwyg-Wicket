@@ -16,23 +16,24 @@ public class WysiwygBehavior extends JQueryBehavior{
 
 	public WysiwygBehavior(String selector, String method){
 		super(selector,method);
+		this.add(CSS1);
+		this.add(CSS2);
+		this.add(CSS3);
 		this.add(JS1);
 		this.add(JS2);
 		this.add(JS3);
 		this.add(JS4);
-		this.add(CSS1);
-		this.add(CSS2);
-		this.add(CSS3);
+
 	}
 
 	public WysiwygBehavior(String selector, String method, Options options){
 		super(selector,method,options);
+		this.add(CSS1);
+		this.add(CSS2);
+		this.add(CSS3);
 		this.add(JS1);
 		this.add(JS2);
 		this.add(JS3);
 		this.add(JS4);
-		this.add(CSS1);
-		this.add(CSS2);
-		this.add(CSS3);
 	}
 }
