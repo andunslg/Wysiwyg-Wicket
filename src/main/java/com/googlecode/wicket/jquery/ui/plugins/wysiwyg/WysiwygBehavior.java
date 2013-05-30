@@ -34,16 +34,16 @@ public class WysiwygBehavior extends JQueryBehavior{
 	private static final CssResourceReference CSS3=new CssResourceReference(WysiwygBehavior.class,"css/font-awesome.css");
 
 	public WysiwygBehavior(String selector, String method){
-		this(selector, method,new Options());
+		this(selector,method,new Options());
 	}
+
 	public WysiwygBehavior(String selector, String method, Options options){
 		super(selector,method,options);
 
-		IPackageResourceGuard packageResourceGuard =
+		IPackageResourceGuard packageResourceGuard=
 				Application.get().getResourceSettings().getPackageResourceGuard();
-		if (packageResourceGuard instanceof SecurePackageResourceGuard)
-		{
-			SecurePackageResourceGuard guard = (SecurePackageResourceGuard)packageResourceGuard;
+		if(packageResourceGuard instanceof SecurePackageResourceGuard){
+			SecurePackageResourceGuard guard=(SecurePackageResourceGuard)packageResourceGuard;
 			guard.addPattern("+*.eot");
 			guard.addPattern("+*.woff");
 			guard.addPattern("+*.ttf");

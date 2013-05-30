@@ -17,16 +17,35 @@
 package com.googlecode.wicket.jquery.ui;
 
 
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
 public class WysiwygEditor extends Panel{
+	String editorID;
 
-	public WysiwygEditor(String id){
+	public WysiwygEditor(String id, String editorID){
 		super(id);
+		this.editorID=editorID;
+		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
+			@Override
+			protected void onComponentTag(final ComponentTag tag){
+				super.onComponentTag(tag);
+				tag.put("data-target","#"+WysiwygEditor.this.editorID);
+			}
+		};
 	}
 
-	public WysiwygEditor(String id, IModel<?> model){
+	public WysiwygEditor(String id, IModel<?> model, String editorID){
 		super(id,model);
+		this.editorID=editorID;
+		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
+			@Override
+			protected void onComponentTag(final ComponentTag tag){
+				super.onComponentTag(tag);
+				tag.put("data-target","#"+WysiwygEditor.this.editorID);
+			}
+		};
 	}
 }
