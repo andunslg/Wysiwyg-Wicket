@@ -18,6 +18,9 @@ package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
 
 import com.googlecode.wicket.jquery.core.JQueryBehavior;
 import com.googlecode.wicket.jquery.core.Options;
+import org.apache.wicket.Application;
+import org.apache.wicket.markup.html.IPackageResourceGuard;
+import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
@@ -31,11 +34,21 @@ public class WysiwygBehavior extends JQueryBehavior{
 	private static final CssResourceReference CSS3=new CssResourceReference(WysiwygBehavior.class,"css/font-awesome.css");
 
 	public WysiwygBehavior(String selector, String method){
-		 this(selector, method,new Options());
+		this(selector, method,new Options());
 	}
-
 	public WysiwygBehavior(String selector, String method, Options options){
 		super(selector,method,options);
+
+		IPackageResourceGuard packageResourceGuard =
+				Application.get().getResourceSettings().getPackageResourceGuard();
+		if (packageResourceGuard instanceof SecurePackageResourceGuard)
+		{
+			SecurePackageResourceGuard guard = (SecurePackageResourceGuard)packageResourceGuard;
+			guard.addPattern("+*.eot");
+			guard.addPattern("+*.woff");
+			guard.addPattern("+*.ttf");
+		}
+
 		this.add(CSS1);
 		this.add(CSS2);
 		this.add(CSS3);
