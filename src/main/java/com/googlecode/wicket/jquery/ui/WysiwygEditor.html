@@ -24,7 +24,7 @@
         lang="en">
 <body>
 <wicket:panel>
-    <div class="btn-toolbar" data-role="editor-toolbar" id="bToolbar">
+    <div class="btn-toolbar" data-role="editor-toolbar" id="bToolbar" data-target="#editorArea">
         <div class="btn-group">
             <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b
                     class="caret"></b></a>
@@ -68,6 +68,8 @@
             <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
             <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
         </div>
+    </div>
+    <div id="editorArea">
     </div>
 </wicket:panel>
 </body>

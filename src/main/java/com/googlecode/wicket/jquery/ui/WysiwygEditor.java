@@ -17,35 +17,54 @@
 package com.googlecode.wicket.jquery.ui;
 
 
-import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
-public class WysiwygEditor extends Panel{
-	String editorID;
+public class WysiwygEditor extends FormComponentPanel<WysiwygText>{
+	//String editorID;
+	WebMarkupContainer editorField;
 
-	public WysiwygEditor(String id, String editorID){
+	public WysiwygEditor(String id){
 		super(id);
-		this.editorID=editorID;
-		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
-			@Override
-			protected void onComponentTag(final ComponentTag tag){
-				super.onComponentTag(tag);
-				tag.put("data-target","#"+WysiwygEditor.this.editorID);
-			}
-		};
+
+		editorField=new WebMarkupContainer("editorArea", new Model<String>(""));
+//		this.editorID=editorID;
+//		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
+//			@Override
+//			protected void onComponentTag(final ComponentTag tag){
+//				super.onComponentTag(tag);
+//				tag.put("data-target","#"+WysiwygEditor.this.editorID);
+//			}
+//		};
 	}
 
-	public WysiwygEditor(String id, IModel<?> model, String editorID){
+	public WysiwygEditor(String id, IModel<WysiwygText> model){
 		super(id,model);
-		this.editorID=editorID;
-		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
-			@Override
-			protected void onComponentTag(final ComponentTag tag){
-				super.onComponentTag(tag);
-				tag.put("data-target","#"+WysiwygEditor.this.editorID);
-			}
-		};
+		editorField=new WebMarkupContainer("editorArea", new Model<String>(""));
+//		this.editorID=editorID;
+//		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
+//			@Override
+//			protected void onComponentTag(final ComponentTag tag){
+//				super.onComponentTag(tag);
+//				tag.put("data-target","#"+WysiwygEditor.this.editorID);
+//			}
+//		};
+	}
+
+	@Override
+	public void convertInput(){
+		WysiwygText wysiwygText=new WysiwygText(editorField.getDefaultModelObjectAsString());
+		System.out.println(wysiwygText.getText());
+		setConvertedInput(wysiwygText);
+	}
+
+	public void onBeforeRender(){
+		super.onBeforeRender();
+		WysiwygText wysiwygText=(WysiwygText)this.getDefaultModelObject();
+		if(wysiwygText!=null){
+			this.editorField.setDefaultModelObject(wysiwygText.getText());
+		}
 	}
 }
