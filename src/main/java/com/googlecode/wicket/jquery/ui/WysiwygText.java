@@ -30,4 +30,7 @@ public class WysiwygText implements Serializable{
 		return text;
 	}
 
+	public void setText(String text){
+		this.text=text;
+	}
 }

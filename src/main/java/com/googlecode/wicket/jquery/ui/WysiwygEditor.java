@@ -18,18 +18,16 @@ package com.googlecode.wicket.jquery.ui;
 
 
 import com.googlecode.wicket.jquery.ui.plugins.wysiwyg.WysiwygBehavior;
-import org.apache.wicket.markup.Markup;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.resource.CssResourceReference;
 
-import java.io.Serializable;
-
-public class WysiwygEditor extends FormComponentPanel<WysiwygText>{
-	//String editorID;
-	WebMarkupContainer editorArea;
+public class WysiwygEditor extends FormComponentPanel<WysiwygText> {
 
 	public WysiwygEditor(String id){
 		this(id,new Model<WysiwygText>());
@@ -37,33 +35,36 @@ public class WysiwygEditor extends FormComponentPanel<WysiwygText>{
 
 	public WysiwygEditor(String id, IModel<WysiwygText> model){
 		super(id,model);
-		editorArea=new WebMarkupContainer("editorArea",new Model<String>("Type Here..."));
-		editorArea.setOutputMarkupId(true);
-		editorArea.setMarkupId("editorArea");
-		this.add(editorArea);
 		this.add(new WysiwygBehavior("#editorArea","wysiwyg"));
-//		this.editorID=editorID;
-//		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
-//			@Override
-//			protected void onComponentTag(final ComponentTag tag){
-//				super.onComponentTag(tag);
-//				tag.put("data-target","#"+WysiwygEditor.this.editorID);
-//			}
-//		};
+
+		Form form=new Form("form");
+		form.add(new AjaxSubmitLink("submitBtn") {
+			private static final long serialVersionUID = 1L;
+			@Override
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				System.out.println(getRequest().getRequestParameters().getParameterValue("richText").toString());
+			}
+			@Override
+			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+			{
+				super.updateAjaxAttributes(attributes);
+				attributes.getDynamicExtraParameters().add("return [ {name: 'richText',value: $('#editorArea').html() } ]");
+			}
+
+		});
+		this.add(form);
+
 	}
 
 	@Override
 	public void convertInput(){
-		WysiwygText wysiwygText=new WysiwygText((String)editorArea.getDefaultModelObject());
-		System.out.println("---------------------------------------------------------------"+wysiwygText.getText());
-		setConvertedInput(wysiwygText);
+
 	}
 
+	@Override
 	public void onBeforeRender(){
 		super.onBeforeRender();
-		WysiwygText wysiwygText=(WysiwygText)this.getDefaultModelObject();
-		if(wysiwygText!=null){
-			this.editorArea.setDefaultModelObject(wysiwygText.getText());
-		}
+
+//		}
 	}
 }
