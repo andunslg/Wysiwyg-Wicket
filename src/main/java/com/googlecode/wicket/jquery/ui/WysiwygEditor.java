@@ -17,32 +17,31 @@
 package com.googlecode.wicket.jquery.ui;
 
 
+import com.googlecode.wicket.jquery.ui.plugins.wysiwyg.WysiwygBehavior;
+import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.CssResourceReference;
+
+import java.io.Serializable;
 
 public class WysiwygEditor extends FormComponentPanel<WysiwygText>{
 	//String editorID;
-	WebMarkupContainer editorField;
+	WebMarkupContainer editorArea;
 
 	public WysiwygEditor(String id){
-		super(id);
-
-		editorField=new WebMarkupContainer("editorArea", new Model<String>(""));
-//		this.editorID=editorID;
-//		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
-//			@Override
-//			protected void onComponentTag(final ComponentTag tag){
-//				super.onComponentTag(tag);
-//				tag.put("data-target","#"+WysiwygEditor.this.editorID);
-//			}
-//		};
+		this(id,new Model<WysiwygText>());
 	}
 
 	public WysiwygEditor(String id, IModel<WysiwygText> model){
 		super(id,model);
-		editorField=new WebMarkupContainer("editorArea", new Model<String>(""));
+		editorArea=new WebMarkupContainer("editorArea",new Model<String>("Type Here..."));
+		editorArea.setOutputMarkupId(true);
+		editorArea.setMarkupId("editorArea");
+		this.add(editorArea);
+		this.add(new WysiwygBehavior("#editorArea","wysiwyg"));
 //		this.editorID=editorID;
 //		WebMarkupContainer bToolbar=new WebMarkupContainer("bToolbar"){
 //			@Override
@@ -55,8 +54,8 @@ public class WysiwygEditor extends FormComponentPanel<WysiwygText>{
 
 	@Override
 	public void convertInput(){
-		WysiwygText wysiwygText=new WysiwygText(editorField.getDefaultModelObjectAsString());
-		System.out.println(wysiwygText.getText());
+		WysiwygText wysiwygText=new WysiwygText((String)editorArea.getDefaultModelObject());
+		System.out.println("---------------------------------------------------------------"+wysiwygText.getText());
 		setConvertedInput(wysiwygText);
 	}
 
@@ -64,7 +63,7 @@ public class WysiwygEditor extends FormComponentPanel<WysiwygText>{
 		super.onBeforeRender();
 		WysiwygText wysiwygText=(WysiwygText)this.getDefaultModelObject();
 		if(wysiwygText!=null){
-			this.editorField.setDefaultModelObject(wysiwygText.getText());
+			this.editorArea.setDefaultModelObject(wysiwygText.getText());
 		}
 	}
 }

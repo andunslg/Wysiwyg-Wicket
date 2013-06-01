@@ -32,6 +32,7 @@ public class WysiwygBehavior extends JQueryBehavior{
 	private static final CssResourceReference CSS1=new CssResourceReference(WysiwygBehavior.class,"css/bootstrap-combined.no-icons.min.css");
 	private static final CssResourceReference CSS2=new CssResourceReference(WysiwygBehavior.class,"css/bootstrap-responsive.min.css");
 	private static final CssResourceReference CSS3=new CssResourceReference(WysiwygBehavior.class,"css/font-awesome.css");
+	private static final CssResourceReference CSS4=new CssResourceReference(WysiwygBehavior.class,"css/editor.css");
 
 	public WysiwygBehavior(String selector, String method){
 		this(selector,method,new Options());
@@ -52,6 +53,7 @@ public class WysiwygBehavior extends JQueryBehavior{
 		this.add(CSS1);
 		this.add(CSS2);
 		this.add(CSS3);
+		this.add(CSS4);
 		this.add(JS1);
 		this.add(JS2);
 		this.add(JS3);
