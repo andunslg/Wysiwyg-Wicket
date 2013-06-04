@@ -24,7 +24,7 @@
     <artifactId>wysiwyg</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Wysiwyg_Wicket_Jquery_Pulgin</name>
+    <name>Wysiwyg_Wicket_Jquery_Plugin</name>
 
 
     <licenses>
@@ -35,14 +35,14 @@
         </license>
     </licenses>
     <properties>
-        <wicket.version>6.6.0</wicket.version>
+        <wicket.version>6.8.0</wicket.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.googlecode.wicket-jquery-ui</groupId>
             <artifactId>wicket-jquery-ui-core</artifactId>
-            <version>6.7.0</version>
+            <version>6.8.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.wicket</groupId>
@@ -123,3 +123,4 @@
         </repository>
     </repositories>
 </project>
+

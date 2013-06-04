@@ -201,3 +201,10 @@
         }
     };
 }(window.jQuery));
+
+function addTextAreaMapper(id, txtId) {
+	$('#' + id).html($('#' + txtId).val());
+	$('#' + id).on('mouseup keyup mouseout', function(e) {
+		$('#' + txtId).val($('#' + id).html());
+	});
+}
