@@ -29,9 +29,25 @@ public class WysiwygEditor extends FormComponentPanel<String> {
 	private static final long serialVersionUID = 1L;
 	private final TextArea<String> editor;
 	private final WebMarkupContainer editorArea = new WebMarkupContainer("editorArea");
-	
+
 	public WysiwygEditor(String id) {
 		this(id, null);
+	}
+
+	public WysiwygEditor(String id, IModel<String> model){
+		this(id, model,null);
+	}
+
+	//FIXME Localize
+	public WysiwygEditor(String id, IModel<String> model,WysiwygDefaultToolbar btnToolBar){
+		super(id, model);
+
+		add(editorArea.setOutputMarkupId(true));
+		add((editor = new TextArea<String>("editor", Model.of(getModelObject()))).setOutputMarkupId(true));
+		add(new WysiwygBehavior("#" + editorArea.getMarkupId(), "wysiwyg"));
+		if(btnToolBar!=null){
+			btnToolBar.attacheToEditor(editorArea.getMarkupId());
+		}
 	}
 
 	@Override
@@ -39,26 +55,20 @@ public class WysiwygEditor extends FormComponentPanel<String> {
 		super.onModelChanged();
 		editor.setModelObject((String)getDefaultModelObject());
 	}
-	
-	//FIXME Localize
-	public WysiwygEditor(String id, IModel<String> model){
-		super(id, model);
-	
-		add(editorArea.setOutputMarkupId(true));
-		add(new WebMarkupContainer("toolbar").setMarkupId("bToolbar").add(AttributeModifier.replace("data-target", "#" + editorArea.getMarkupId())));
-		add((editor = new TextArea<String>("editor", Model.of(getModelObject()))).setOutputMarkupId(true));
-		add(new WysiwygBehavior("#" + editorArea.getMarkupId(), "wysiwyg"));
-	}
-	
+
 	@Override
 	protected void convertInput() {
 		setConvertedInput(editor.getConvertedInput());
 	}
-	
+
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
 		response.render(OnLoadHeaderItem.forScript(
 				String.format("addTextAreaMapper('%s', '%s');", editorArea.getMarkupId(), editor.getMarkupId())));
+	}
+
+	public String getEditorMarkupID(){
+		return editorArea.getMarkupId();
 	}
 }

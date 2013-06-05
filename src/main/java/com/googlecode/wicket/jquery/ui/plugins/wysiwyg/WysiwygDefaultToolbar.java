@@ -14,20 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-.editor-area {
-	max-height: 100px;
-	height: 100px;
-	background-color: white;
-	border-collapse: separate;
-	border: 1px solid rgb(204, 204, 204);
-	padding: 4px;
-	box-sizing: content-box;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
-	overflow: scroll;
-	outline: none;
+package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
+
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
+
+public class WysiwygDefaultToolbar extends Panel{
+
+	private WebMarkupContainer btnToolBar;
+
+	public WysiwygDefaultToolbar(String id){
+		this(id,null);
+	}
+
+	public WysiwygDefaultToolbar(String id, IModel<String> model){
+		super(id, model);
+		btnToolBar=	new WebMarkupContainer("toolbar");
+		add(btnToolBar);
+	}
+
+	public void attacheToEditor(String editorID){
+		btnToolBar.setMarkupId("bToolbar").add(AttributeModifier.replace("data-target","#"+editorID));
+	}
+
 }
