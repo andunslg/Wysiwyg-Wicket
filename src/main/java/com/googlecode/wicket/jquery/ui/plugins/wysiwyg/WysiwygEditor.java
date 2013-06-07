@@ -16,7 +16,6 @@
  */
 package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnLoadHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -34,26 +33,25 @@ public class WysiwygEditor extends FormComponentPanel<String> {
 		this(id, null);
 	}
 
-	public WysiwygEditor(String id, IModel<String> model){
-		this(id, model,null);
+	public WysiwygEditor(String id, IModel<String> model) {
+		this(id, model, null);
 	}
 
-	//FIXME Localize
-	public WysiwygEditor(String id, IModel<String> model,WysiwygDefaultToolbar btnToolBar){
+	public WysiwygEditor(String id, IModel<String> model, IWysiwygToolbar btnToolBar) {
 		super(id, model);
 
 		add(editorArea.setOutputMarkupId(true));
 		add((editor = new TextArea<String>("editor", Model.of(getModelObject()))).setOutputMarkupId(true));
 		add(new WysiwygBehavior("#" + editorArea.getMarkupId(), "wysiwyg"));
-		if(btnToolBar!=null){
-			btnToolBar.attacheToEditor(editorArea.getMarkupId());
+		if (btnToolBar != null) {
+			btnToolBar.attachToEditor(editorArea.getMarkupId());
 		}
 	}
 
 	@Override
 	protected void onModelChanged() {
 		super.onModelChanged();
-		editor.setModelObject((String)getDefaultModelObject());
+		editor.setModelObject((String) getDefaultModelObject());
 	}
 
 	@Override
@@ -64,11 +62,11 @@ public class WysiwygEditor extends FormComponentPanel<String> {
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
-		response.render(OnLoadHeaderItem.forScript(
-				String.format("addTextAreaMapper('%s', '%s');", editorArea.getMarkupId(), editor.getMarkupId())));
+		response.render(OnLoadHeaderItem.forScript(String.format("addTextAreaMapper('%s', '%s');", editorArea.getMarkupId(),
+				editor.getMarkupId())));
 	}
 
-	public String getEditorMarkupID(){
+	public String getEditorMarkupID() {
 		return editorArea.getMarkupId();
 	}
 }

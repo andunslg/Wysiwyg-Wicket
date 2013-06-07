@@ -16,27 +16,6 @@
  */
 package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
-
-public class WysiwygDefaultToolbar extends Panel implements IWysiwygToolbar {
-	private static final long serialVersionUID = 1L;
-	private WebMarkupContainer btnToolBar;
-
-	public WysiwygDefaultToolbar(String id) {
-		this(id, null);
-	}
-
-	// FIXME Localize
-	public WysiwygDefaultToolbar(String id, IModel<String> model) {
-		super(id, model);
-		add(btnToolBar = new WebMarkupContainer("toolbar"));
-	}
-
-	public void attachToEditor(String editorID) {
-		btnToolBar.setMarkupId("bToolbar").add(AttributeModifier.replace("data-target", "#" + editorID));
-	}
-
+public interface IWysiwygToolbar {
+	void attachToEditor(String editorID);
 }
