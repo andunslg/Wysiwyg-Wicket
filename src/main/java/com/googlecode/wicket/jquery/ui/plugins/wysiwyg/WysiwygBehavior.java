@@ -26,35 +26,33 @@ import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import com.googlecode.wicket.jquery.core.JQueryBehavior;
 import com.googlecode.wicket.jquery.core.Options;
 
-public class WysiwygBehavior extends JQueryBehavior{
+public class WysiwygBehavior extends JQueryBehavior {
 	private static final long serialVersionUID = 1L;
-	private static final JavaScriptResourceReference WYSIWYG
-		= new JavaScriptResourceReference(WysiwygBehavior.class,"js/bootstrap-wysiwyg.js");
-	private static final JavaScriptResourceReference BOOTSTRAP
-		= new JavaScriptResourceReference(WysiwygBehavior.class,"js/bootstrap.min.js");
-	private static final JavaScriptResourceReference HOTKEYS
-		= new JavaScriptResourceReference(WysiwygBehavior.class,"js/jquery.hotkeys.js");
-	private static final JavaScriptResourceReference PRETTIFY
-		= new JavaScriptResourceReference(WysiwygBehavior.class,"js/prettify.js");
-	private static final CssResourceReference BOOTSTRAP_COMBINED
-		= new CssResourceReference(WysiwygBehavior.class,"css/bootstrap-combined.no-icons.min.css");
-	private static final CssResourceReference BOOTSTRAP_RESPONSIVE
-		= new CssResourceReference(WysiwygBehavior.class,"css/bootstrap-responsive.min.css");
-	private static final CssResourceReference FONT_AWESOME
-		= new CssResourceReference(WysiwygBehavior.class,"css/font-awesome.css");
-	private static final CssResourceReference EDITOR = new CssResourceReference(WysiwygBehavior.class,"css/editor.css");
+	private static final JavaScriptResourceReference WYSIWYG = new JavaScriptResourceReference(WysiwygBehavior.class,
+			"js/bootstrap-wysiwyg.js");
+	private static final JavaScriptResourceReference BOOTSTRAP = new JavaScriptResourceReference(WysiwygBehavior.class,
+			"js/bootstrap.min.js");
+	private static final JavaScriptResourceReference HOTKEYS = new JavaScriptResourceReference(WysiwygBehavior.class,
+			"js/jquery.hotkeys.js");
+	private static final JavaScriptResourceReference PRETTIFY = new JavaScriptResourceReference(WysiwygBehavior.class, "js/prettify.js");
+	private static final CssResourceReference BOOTSTRAP_COMBINED = new CssResourceReference(WysiwygBehavior.class,
+			"css/bootstrap-combined.no-icons.min.css");
+	private static final CssResourceReference BOOTSTRAP_RESPONSIVE = new CssResourceReference(WysiwygBehavior.class,
+			"css/bootstrap-responsive.min.css");
+	private static final CssResourceReference FONT_AWESOME = new CssResourceReference(WysiwygBehavior.class, "css/font-awesome.css");
+	private static final CssResourceReference EDITOR = new CssResourceReference(WysiwygBehavior.class, "css/editor.css");
 
-	public WysiwygBehavior(String selector, String method){
-		this(selector,method,new Options());
+	public WysiwygBehavior(String selector, String method) {
+		this(selector, method, new Options());
 	}
 
-	public WysiwygBehavior(String selector, String method, Options options){
-		super(selector,method,options);
+	// FIXME Configurable resource references should be created
+	public WysiwygBehavior(String selector, String method, Options options) {
+		super(selector, method, options);
 
-		IPackageResourceGuard packageResourceGuard=
-				Application.get().getResourceSettings().getPackageResourceGuard();
-		if(packageResourceGuard instanceof SecurePackageResourceGuard){
-			SecurePackageResourceGuard guard=(SecurePackageResourceGuard)packageResourceGuard;
+		IPackageResourceGuard packageResourceGuard = Application.get().getResourceSettings().getPackageResourceGuard();
+		if (packageResourceGuard instanceof SecurePackageResourceGuard) {
+			SecurePackageResourceGuard guard = (SecurePackageResourceGuard) packageResourceGuard;
 			if (!guard.getPattern().contains(new SearchPattern("+*.eot"))) {
 				guard.addPattern("+*.eot");
 				guard.addPattern("+*.woff");
