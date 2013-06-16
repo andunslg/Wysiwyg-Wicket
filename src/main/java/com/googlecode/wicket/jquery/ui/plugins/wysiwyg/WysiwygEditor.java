@@ -42,7 +42,7 @@ public class WysiwygEditor extends FormComponentPanel<String> {
 
 		add(editorArea.setOutputMarkupId(true));
 		add((editor = new TextArea<String>("editor", Model.of(getModelObject()))).setOutputMarkupId(true));
-		add(new WysiwygBehavior("#" + editorArea.getMarkupId(), "wysiwyg"));
+		add(new WysiwygBehavior("#" + editorArea.getMarkupId()));
 		if (btnToolBar != null) {
 			btnToolBar.attachToEditor(editorArea.getMarkupId());
 		}

@@ -16,39 +16,25 @@
  */
 package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
 
+import com.googlecode.wicket.jquery.core.JQueryBehavior;
+import com.googlecode.wicket.jquery.core.Options;
+import com.googlecode.wicket.jquery.ui.plugins.wysiwyg.resource.*;
+import com.googlecode.wicket.jquery.ui.plugins.wysiwyg.settings.IWysiwygLibrarySettings;
 import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard.SearchPattern;
-import org.apache.wicket.request.resource.CssResourceReference;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
-
-import com.googlecode.wicket.jquery.core.JQueryBehavior;
-import com.googlecode.wicket.jquery.core.Options;
 
 public class WysiwygBehavior extends JQueryBehavior {
 	private static final long serialVersionUID = 1L;
-	private static final JavaScriptResourceReference WYSIWYG = new JavaScriptResourceReference(WysiwygBehavior.class,
-			"js/bootstrap-wysiwyg.js");
-	private static final JavaScriptResourceReference BOOTSTRAP = new JavaScriptResourceReference(WysiwygBehavior.class,
-			"js/bootstrap.min.js");
-	private static final JavaScriptResourceReference HOTKEYS = new JavaScriptResourceReference(WysiwygBehavior.class,
-			"js/jquery.hotkeys.js");
-	private static final JavaScriptResourceReference PRETTIFY = new JavaScriptResourceReference(WysiwygBehavior.class, "js/prettify.js");
-	private static final CssResourceReference BOOTSTRAP_COMBINED = new CssResourceReference(WysiwygBehavior.class,
-			"css/bootstrap-combined.no-icons.min.css");
-	private static final CssResourceReference BOOTSTRAP_RESPONSIVE = new CssResourceReference(WysiwygBehavior.class,
-			"css/bootstrap-responsive.min.css");
-	private static final CssResourceReference FONT_AWESOME = new CssResourceReference(WysiwygBehavior.class, "css/font-awesome.css");
-	private static final CssResourceReference EDITOR = new CssResourceReference(WysiwygBehavior.class, "css/editor.css");
+	private static final String METHOD="wysiwyg";
 
-	public WysiwygBehavior(String selector, String method) {
-		this(selector, method, new Options());
+	public WysiwygBehavior(String selector) {
+		this(selector, new Options());
 	}
 
-	// FIXME Configurable resource references should be created
-	public WysiwygBehavior(String selector, String method, Options options) {
-		super(selector, method, options);
+	public WysiwygBehavior(String selector, Options options) {
+		super(selector, METHOD, options);
 
 		IPackageResourceGuard packageResourceGuard = Application.get().getResourceSettings().getPackageResourceGuard();
 		if (packageResourceGuard instanceof SecurePackageResourceGuard) {
@@ -60,13 +46,100 @@ public class WysiwygBehavior extends JQueryBehavior {
 			}
 		}
 
-		add(BOOTSTRAP_COMBINED);
-		add(BOOTSTRAP_RESPONSIVE);
-		add(FONT_AWESOME);
-		add(EDITOR);
-		add(WYSIWYG);
-		add(BOOTSTRAP);
-		add(HOTKEYS);
-		add(PRETTIFY);
+		this.initReferences();
+	}
+
+	private void initReferences(){
+		IWysiwygLibrarySettings settings = getLibrarySettings();
+
+		//Bootstrap combined CSS
+		if (settings != null && settings.getBootstrapCombinedNoIconsStyleSheetReference() != null)
+		{
+			this.add(settings.getBootstrapCombinedNoIconsStyleSheetReference());
+		}
+		else
+		{
+			this.add(BootstrapCombinedNoIconsStyleSheetResourceReference.get());
+		}
+
+		//Bootstrap Responsive CSS
+		if (settings != null && settings.getBootstrapResponsiveStyleSheetReference() != null)
+		{
+			this.add(settings.getBootstrapResponsiveStyleSheetReference());
+		}
+		else
+		{
+			this.add(BootstrapResponsiveStyleSheetResourceReference.get());
+		}
+
+		//Font Awesome CSS
+		if (settings != null && settings.getFontAwesomeStyleSheetReference() != null)
+		{
+			this.add(settings.getFontAwesomeStyleSheetReference());
+		}
+		else
+		{
+			this.add(FontAwesomeStyleSheetResourceReference.get());
+		}
+
+		//Editor CSS
+		if (settings != null && settings.getEditorStyleSheetReference() != null)
+		{
+			this.add(settings.getEditorStyleSheetReference());
+		}
+		else
+		{
+			this.add(EditorStyleSheetResourceReference.get());
+		}
+
+		// Bootstrap Wysiwyg
+		if (settings != null && settings.getBootstrapWysiwygJavaScriptReference() != null)
+		{
+			this.add(settings.getBootstrapWysiwygJavaScriptReference());
+		}
+		else
+		{
+			this.add(BootstrapWysiwygJavaScriptResourceReference.get());
+		}
+
+		// Bootstrap
+		if (settings != null && settings.getBootstrapJavaScriptReference() != null)
+		{
+			this.add(settings.getBootstrapJavaScriptReference());
+		}
+		else
+		{
+			this.add(BootstrapJavaScriptResourceReference.get());
+		}
+
+		// JQuery Hot Keys
+		if (settings != null && settings.getJqueryHotKeysJavaScriptReference() != null)
+		{
+			this.add(settings.getJqueryHotKeysJavaScriptReference());
+		}
+		else
+		{
+			this.add(JQueryHotKeysJavaScriptResourceReference.get());
+		}
+
+		// Prettify
+		if (settings != null && settings.getPrettifyJavaScriptReference() != null)
+		{
+			this.add(settings.getPrettifyJavaScriptReference());
+		}
+		else
+		{
+			this.add(PrettifyJavaScriptResourceReference.get());
+		}
+	}
+
+	private static IWysiwygLibrarySettings getLibrarySettings()
+	{
+		if (Application.exists() && (Application.get().getJavaScriptLibrarySettings() instanceof IWysiwygLibrarySettings))
+		{
+			return (IWysiwygLibrarySettings) Application.get().getJavaScriptLibrarySettings();
+		}
+
+		return null;
 	}
 }
