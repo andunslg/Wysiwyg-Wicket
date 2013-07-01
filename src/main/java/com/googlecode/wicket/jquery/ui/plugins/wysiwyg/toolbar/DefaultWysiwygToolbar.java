@@ -14,29 +14,56 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
+package com.googlecode.wicket.jquery.ui.plugins.wysiwyg.toolbar;
 
+import com.googlecode.wicket.jquery.core.IJQueryWidget.JQueryWidget;
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-public class WysiwygDefaultToolbar extends Panel implements IWysiwygToolbar {
+/**
+ * Provides a default {@link IWysiwygToolbar}
+ *
+ * @author sebfz1
+ * @author solomax
+ * @author andunslg
+ */
+public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
+{
 	private static final long serialVersionUID = 1L;
-	private WebMarkupContainer btnToolBar;
+	private final WebMarkupContainer toolbar;
 
-	public WysiwygDefaultToolbar(String id) {
+	/**
+	 * Constructor
+	 *
+	 * @param id the markup-id
+	 */
+	public DefaultWysiwygToolbar(String id)
+	{
 		this(id, null);
 	}
 
-	// FIXME Localize
-	public WysiwygDefaultToolbar(String id, IModel<String> model) {
+	/**
+	 * Constructor
+	 *
+	 * @param id the markup-id
+	 * @param model the {@link org.apache.wicket.model.IModel}
+	 */
+	//TODO: andunslg / solomax - Localize
+	public DefaultWysiwygToolbar(String id, IModel<String> model)
+	{
 		super(id, model);
-		add(btnToolBar = new WebMarkupContainer("toolbar"));
+
+		this.toolbar = new WebMarkupContainer("toolbar");
+		this.toolbar.setMarkupId("bToolbar");
+		this.add(this.toolbar);
 	}
 
-	public void attachToEditor(String editorID) {
-		btnToolBar.setMarkupId("bToolbar").add(AttributeModifier.replace("data-target", "#" + editorID));
+	@Override
+	public void attachToEditor(Component editor)
+	{
+		this.toolbar.add(AttributeModifier.replace("data-target", JQueryWidget.getSelector(editor)));
 	}
-
 }

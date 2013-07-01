@@ -1,19 +1,19 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Licensed to the Apache Software Foundation (ASF) under one or more
+* contributor license agreements. See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the "License"); you may not use this file except in compliance with
+* the License. You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
 
 import com.googlecode.wicket.jquery.core.JQueryBehavior;
@@ -52,7 +52,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 	private void initReferences(){
 		IWysiwygLibrarySettings settings = getLibrarySettings();
 
-		//Bootstrap combined CSS
+//Bootstrap combined CSS
 		if (settings != null && settings.getBootstrapCombinedNoIconsStyleSheetReference() != null)
 		{
 			this.add(settings.getBootstrapCombinedNoIconsStyleSheetReference());
@@ -62,7 +62,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(BootstrapCombinedNoIconsStyleSheetResourceReference.get());
 		}
 
-		//Bootstrap Responsive CSS
+//Bootstrap Responsive CSS
 		if (settings != null && settings.getBootstrapResponsiveStyleSheetReference() != null)
 		{
 			this.add(settings.getBootstrapResponsiveStyleSheetReference());
@@ -72,7 +72,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(BootstrapResponsiveStyleSheetResourceReference.get());
 		}
 
-		//Font Awesome CSS
+//Font Awesome CSS
 		if (settings != null && settings.getFontAwesomeStyleSheetReference() != null)
 		{
 			this.add(settings.getFontAwesomeStyleSheetReference());
@@ -82,7 +82,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(FontAwesomeStyleSheetResourceReference.get());
 		}
 
-		//Editor CSS
+//Editor CSS
 		if (settings != null && settings.getEditorStyleSheetReference() != null)
 		{
 			this.add(settings.getEditorStyleSheetReference());
@@ -92,7 +92,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(EditorStyleSheetResourceReference.get());
 		}
 
-		// Bootstrap Wysiwyg
+// Bootstrap Wysiwyg
 		if (settings != null && settings.getBootstrapWysiwygJavaScriptReference() != null)
 		{
 			this.add(settings.getBootstrapWysiwygJavaScriptReference());
@@ -102,7 +102,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(BootstrapWysiwygJavaScriptResourceReference.get());
 		}
 
-		// Bootstrap
+// Bootstrap
 		if (settings != null && settings.getBootstrapJavaScriptReference() != null)
 		{
 			this.add(settings.getBootstrapJavaScriptReference());
@@ -112,7 +112,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(BootstrapJavaScriptResourceReference.get());
 		}
 
-		// JQuery Hot Keys
+// JQuery Hot Keys
 		if (settings != null && settings.getJqueryHotKeysJavaScriptReference() != null)
 		{
 			this.add(settings.getJqueryHotKeysJavaScriptReference());
@@ -122,7 +122,7 @@ public class WysiwygBehavior extends JQueryBehavior {
 			this.add(JQueryHotKeysJavaScriptResourceReference.get());
 		}
 
-		// Prettify
+// Prettify
 		if (settings != null && settings.getPrettifyJavaScriptReference() != null)
 		{
 			this.add(settings.getPrettifyJavaScriptReference());

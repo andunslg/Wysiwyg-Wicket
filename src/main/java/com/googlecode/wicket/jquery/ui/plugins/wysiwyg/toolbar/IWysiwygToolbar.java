@@ -14,8 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.wicket.jquery.ui.plugins.wysiwyg;
+package com.googlecode.wicket.jquery.ui.plugins.wysiwyg.toolbar;
 
-public interface IWysiwygToolbar {
-	void attachToEditor(String editorID);
+import org.apache.wicket.Component;
+
+/**
+ * Specifies a toolbar to be used by a {@link com.googlecode.wicket.jquery.ui.plugins.wysiwyg.WysiwygEditor}
+ *
+ * @author sebfz1
+ * @author solomax
+ * @author andunslg
+ */
+public interface IWysiwygToolbar
+{
+	/**
+	 * Attaches the {@link IWysiwygToolbar} to the editor {@link org.apache.wicket.Component}
+	 *
+	 * @param editor the {@link org.apache.wicket.Component} to attach the {@link IWysiwygToolbar} to
+	 */
+	void attachToEditor(Component editor);
 }
