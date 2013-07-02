@@ -20,8 +20,13 @@ import com.googlecode.wicket.jquery.core.IJQueryWidget.JQueryWidget;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
+
+import java.util.Locale;
 
 /**
  * Provides a default {@link IWysiwygToolbar}
@@ -56,8 +61,80 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 	{
 		super(id, model);
 
+		getSession().setLocale(new Locale("english"));
+
 		this.toolbar = new WebMarkupContainer("toolbar");
 		this.toolbar.setMarkupId("bToolbar");
+
+		//Adding Buttons with localisations
+		ExternalLink fontSize= new ExternalLink("fontSize","#");
+		fontSize.add(AttributeModifier.replace("title",new ResourceModel("fontSize")));
+		toolbar.add(fontSize);
+
+		ExternalLink bold= new ExternalLink("bold","#");
+		ExternalLink italic= new ExternalLink("italic","#");
+		ExternalLink strikethrough= new ExternalLink("strikethrough","#");
+		ExternalLink underline= new ExternalLink("underline","#");
+
+		bold.add(AttributeModifier.replace("title",new ResourceModel("bold")));
+		italic.add(AttributeModifier.replace("title",new ResourceModel("italic")));
+		strikethrough.add(AttributeModifier.replace("title",new ResourceModel("strikethrough")));
+		underline.add(AttributeModifier.replace("title",new ResourceModel("underline")));
+
+		toolbar.add(bold);
+		toolbar.add(italic);
+		toolbar.add(strikethrough);
+		toolbar.add(underline);
+
+		ExternalLink bullets= new ExternalLink("bullets","#");
+		ExternalLink numbers= new ExternalLink("numbers","#");
+		ExternalLink indent= new ExternalLink("indent","#");
+		ExternalLink reduceIndent= new ExternalLink("reduceIndent","#");
+
+		bullets.add(AttributeModifier.replace("title",new ResourceModel("bullets")));
+		numbers.add(AttributeModifier.replace("title",new ResourceModel("numbers")));
+		indent.add(AttributeModifier.replace("title",new ResourceModel("indent")));
+		reduceIndent.add(AttributeModifier.replace("title",new ResourceModel("reduceIndent")));
+
+		toolbar.add(bullets);
+		toolbar.add(numbers);
+		toolbar.add(indent);
+		toolbar.add(reduceIndent);
+
+		ExternalLink justifyLeft= new ExternalLink("justifyLeft","#");
+		ExternalLink justifyCenter= new ExternalLink("justifyCenter","#");
+		ExternalLink justifyRight= new ExternalLink("justifyRight","#");
+		ExternalLink justifyFull= new ExternalLink("justifyFull","#");
+
+		justifyLeft.add(AttributeModifier.replace("title",new ResourceModel("justifyLeft")));
+		justifyCenter.add(AttributeModifier.replace("title",new ResourceModel("justifyCenter")));
+		justifyRight.add(AttributeModifier.replace("title",new ResourceModel("justifyRight")));
+		justifyFull.add(AttributeModifier.replace("title",new ResourceModel("justifyFull")));
+
+		toolbar.add(justifyLeft);
+		toolbar.add(justifyCenter);
+		toolbar.add(justifyRight);
+		toolbar.add(justifyFull);
+
+		ExternalLink hyperlink= new ExternalLink("hyperlink","#");
+		ExternalLink removeHyperlink= new ExternalLink("removeHyperlink","#");
+
+		hyperlink.add(AttributeModifier.replace("title",new ResourceModel("hyperlink")));
+		removeHyperlink.add(AttributeModifier.replace("title",new ResourceModel("removeHyperlink")));
+
+		toolbar.add(hyperlink);
+		toolbar.add(removeHyperlink);
+
+
+		ExternalLink undo= new ExternalLink("undo","#");
+		ExternalLink redo= new ExternalLink("redo","#");
+
+		undo.add(AttributeModifier.replace("title",new ResourceModel("undo")));
+		redo.add(AttributeModifier.replace("title",new ResourceModel("redo")));
+
+		toolbar.add(undo);
+		toolbar.add(redo);
+
 		this.add(this.toolbar);
 	}
 
