@@ -22,6 +22,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -74,6 +75,14 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		fontSize.add(AttributeModifier.replace("title",new ResourceModel("fontSize")));
 		fontSize.add(new Image("fontSizeImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"font.png")));
 		toolbar.add(fontSize);
+
+		Label huge=new Label("hugh",new ResourceModel("hugh"));
+		Label medium=new Label("medium",new ResourceModel("medium"));
+		Label small=new Label("small",new ResourceModel("small"));
+
+		toolbar.add(huge);
+		toolbar.add(medium);
+		toolbar.add(small);
 
 		ExternalLink bold= new ExternalLink("bold","#");
 		ExternalLink italic= new ExternalLink("italic","#");
