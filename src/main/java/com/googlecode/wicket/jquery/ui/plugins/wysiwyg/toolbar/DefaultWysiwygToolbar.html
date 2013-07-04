@@ -17,9 +17,11 @@
 -->
 <html xmlns:wicket="http://wicket.apache.org">
 <wicket:panel>
+
     <div wicket:id="toolbar" class="btn-toolbar" data-role="editor-toolbar">
+
         <div class="btn-group">
-            <a wicket:id="fontSize" class="btn dropdown-toggle" data-toggle="dropdown" title=""><i class="icon-text-height"></i>&nbsp;<b
+            <a wicket:id="fontSize" class="btn dropdown-toggle" data-toggle="dropdown" title=""><img wicket:id="fontSizeImg" src=""><b
                     class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
@@ -28,35 +30,35 @@
             </ul>
         </div>
         <div class="btn-group">
-            <a wicket:id="bold" class="btn" data-edit="bold" title=""><i class="icon-bold"></i></a>
-            <a wicket:id="italic" class="btn" data-edit="italic" title=""><i class="icon-italic"></i></a>
-            <a wicket:id="strikethrough" class="btn" data-edit="strikethrough" title=""><i class="icon-strikethrough"></i></a>
-            <a wicket:id="underline" class="btn" data-edit="underline" title=""><i class="icon-underline"></i></a>
+            <a wicket:id="bold" class="btn" data-edit="bold" title=""><img  wicket:id="boldImg" src=""></a>
+            <a wicket:id="italic" class="btn" data-edit="italic" title=""><img wicket:id="italicImg" src=""></a>
+            <a wicket:id="strikethrough" class="btn" data-edit="strikethrough" title=""><img wicket:id="strikethroughImg" src=""></a>
+            <a wicket:id="underline" class="btn" data-edit="underline" title=""><img wicket:id="underlineImg" src=""></a>
         </div>
         <div class="btn-group">
-            <a wicket:id="bullets" class="btn" data-edit="insertunorderedlist" title=""><i class="icon-list-ul"></i></a>
-            <a wicket:id="numbers" class="btn" data-edit="insertorderedlist" title=""><i class="icon-list-ol"></i></a>
-            <a wicket:id="indent" class="btn" data-edit="outdent" title=""><i class="icon-indent-left"></i></a>
-            <a wicket:id="reduceIndent" class="btn" data-edit="indent" title=""><i class="icon-indent-right"></i></a>
+            <a wicket:id="bullets" class="btn" data-edit="insertunorderedlist" title=""><img wicket:id="bulletsImg" src=""></a>
+            <a wicket:id="numbers" class="btn" data-edit="insertorderedlist" title=""><img wicket:id="numbersImg" src=""></a>
+            <a wicket:id="reduceIndent" class="btn" data-edit="outdent" title=""><img wicket:id="reduceIndentImg" src=""></a>
+            <a wicket:id="indent" class="btn" data-edit="indent" title=""><img wicket:id="indentImg" src=""></a>
         </div>
         <div class="btn-group">
-            <a wicket:id="justifyLeft" class="btn" data-edit="justifyleft" title=""><i class="icon-align-left"></i></a>
-            <a wicket:id="justifyCenter" class="btn" data-edit="justifycenter" title=""><i class="icon-align-center"></i></a>
-            <a wicket:id="justifyRight" class="btn" data-edit="justifyright" title=""><i class="icon-align-right"></i></a>
-            <a wicket:id="justifyFull" class="btn" data-edit="justifyfull" title=""><i class="icon-align-justify"></i></a>
+            <a wicket:id="justifyLeft" class="btn" data-edit="justifyleft" title=""><img wicket:id="justifyLeftImg" src=""></a>
+            <a wicket:id="justifyCenter" class="btn" data-edit="justifycenter" title=""><img wicket:id="justifyCenterImg" src=""></a>
+            <a wicket:id="justifyRight" class="btn" data-edit="justifyright" title=""><img wicket:id="justifyRightImg" src=""></a>
+            <a wicket:id="justifyFull" class="btn" data-edit="justifyfull" title=""><img wicket:id="justifyFullImg" src=""></a>
         </div>
         <div class="btn-group">
-            <a wicket:id="hyperlink" class="btn dropdown-toggle" data-toggle="dropdown" title=""><i class="icon-link"></i></a>
+            <a wicket:id="hyperlink" class="btn dropdown-toggle" data-toggle="dropdown" title=""><img wicket:id="hyperlinkImg" src=""></a>
             <div class="dropdown-menu input-append">
                 <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
                 <button class="btn" type="button">Add</button>
             </div>
-            <a wicket:id="removeHyperlink" class="btn" data-edit="unlink" title=""><i class="icon-cut"></i></a>
+            <a wicket:id="removeHyperlink" class="btn" data-edit="unlink" title=""><img wicket:id="removeHyperlinkImg" src=""></a>
         </div>
 
         <div class="btn-group">
-            <a wicket:id="undo" class="btn" data-edit="undo" title=""><i class="icon-undo"></i></a>
-            <a wicket:id="redo" class="btn" data-edit="redo" title=""><i class="icon-repeat"></i></a>
+            <a wicket:id="undo" class="btn" data-edit="undo" title=""><img wicket:id="undoImg" src=""></a>
+            <a wicket:id="redo" class="btn" data-edit="redo" title=""><img wicket:id="redoImg" src=""></a>
         </div>
     </div>
 </wicket:panel>

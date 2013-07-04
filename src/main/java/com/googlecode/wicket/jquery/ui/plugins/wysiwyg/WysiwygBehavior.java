@@ -21,6 +21,7 @@ import com.googlecode.wicket.jquery.core.Options;
 import com.googlecode.wicket.jquery.ui.plugins.wysiwyg.resource.*;
 import com.googlecode.wicket.jquery.ui.plugins.wysiwyg.settings.IWysiwygLibrarySettings;
 import org.apache.wicket.Application;
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard.SearchPattern;
@@ -70,16 +71,6 @@ public class WysiwygBehavior extends JQueryBehavior {
 		else
 		{
 			this.add(BootstrapResponsiveStyleSheetResourceReference.get());
-		}
-
-//Font Awesome CSS
-		if (settings != null && settings.getFontAwesomeStyleSheetReference() != null)
-		{
-			this.add(settings.getFontAwesomeStyleSheetReference());
-		}
-		else
-		{
-			this.add(FontAwesomeStyleSheetResourceReference.get());
 		}
 
 //Editor CSS

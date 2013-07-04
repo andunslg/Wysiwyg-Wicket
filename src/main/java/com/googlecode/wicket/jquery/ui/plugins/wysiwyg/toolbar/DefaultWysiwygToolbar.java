@@ -19,12 +19,16 @@ package com.googlecode.wicket.jquery.ui.plugins.wysiwyg.toolbar;
 import com.googlecode.wicket.jquery.core.IJQueryWidget.JQueryWidget;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import java.util.Locale;
 
@@ -56,7 +60,6 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 	 * @param id the markup-id
 	 * @param model the {@link org.apache.wicket.model.IModel}
 	 */
-	//TODO: andunslg / solomax - Localize
 	public DefaultWysiwygToolbar(String id, IModel<String> model)
 	{
 		super(id, model);
@@ -66,9 +69,10 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		this.toolbar = new WebMarkupContainer("toolbar");
 		this.toolbar.setMarkupId("bToolbar");
 
-		//Adding Buttons with localisations
+		//Adding Buttons with localizations
 		ExternalLink fontSize= new ExternalLink("fontSize","#");
 		fontSize.add(AttributeModifier.replace("title",new ResourceModel("fontSize")));
+		fontSize.add(new Image("fontSizeImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"font.png")));
 		toolbar.add(fontSize);
 
 		ExternalLink bold= new ExternalLink("bold","#");
@@ -81,9 +85,13 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		strikethrough.add(AttributeModifier.replace("title",new ResourceModel("strikethrough")));
 		underline.add(AttributeModifier.replace("title",new ResourceModel("underline")));
 
+		bold.add(new Image("boldImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_bold.png")));
 		toolbar.add(bold);
+		italic.add(new Image("italicImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_italic.png")));
 		toolbar.add(italic);
+		strikethrough.add(new Image("strikethroughImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_strikethrough.png")));
 		toolbar.add(strikethrough);
+		underline.add(new Image("underlineImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_underline.png")));
 		toolbar.add(underline);
 
 		ExternalLink bullets= new ExternalLink("bullets","#");
@@ -96,9 +104,13 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		indent.add(AttributeModifier.replace("title",new ResourceModel("indent")));
 		reduceIndent.add(AttributeModifier.replace("title",new ResourceModel("reduceIndent")));
 
+		bullets.add(new Image("bulletsImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_list_bullets.png")));
 		toolbar.add(bullets);
+		numbers.add(new Image("numbersImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_list_numbers.png")));
 		toolbar.add(numbers);
+		indent.add(new Image("indentImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_indent.png")));
 		toolbar.add(indent);
+		reduceIndent.add(new Image("reduceIndentImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_indent_remove.png")));
 		toolbar.add(reduceIndent);
 
 		ExternalLink justifyLeft= new ExternalLink("justifyLeft","#");
@@ -111,9 +123,13 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		justifyRight.add(AttributeModifier.replace("title",new ResourceModel("justifyRight")));
 		justifyFull.add(AttributeModifier.replace("title",new ResourceModel("justifyFull")));
 
+		justifyLeft.add(new Image("justifyLeftImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_align_left.png")));
 		toolbar.add(justifyLeft);
+		justifyCenter.add(new Image("justifyCenterImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_align_center.png")));
 		toolbar.add(justifyCenter);
+		justifyRight.add(new Image("justifyRightImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_align_right.png")));
 		toolbar.add(justifyRight);
+		justifyFull.add(new Image("justifyFullImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"text_align_justify.png")));
 		toolbar.add(justifyFull);
 
 		ExternalLink hyperlink= new ExternalLink("hyperlink","#");
@@ -122,9 +138,10 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		hyperlink.add(AttributeModifier.replace("title",new ResourceModel("hyperlink")));
 		removeHyperlink.add(AttributeModifier.replace("title",new ResourceModel("removeHyperlink")));
 
+		hyperlink.add(new Image("hyperlinkImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"link.png")));
 		toolbar.add(hyperlink);
+		removeHyperlink.add(new Image("removeHyperlinkImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"link_delete.png")));
 		toolbar.add(removeHyperlink);
-
 
 		ExternalLink undo= new ExternalLink("undo","#");
 		ExternalLink redo= new ExternalLink("redo","#");
@@ -132,7 +149,9 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		undo.add(AttributeModifier.replace("title",new ResourceModel("undo")));
 		redo.add(AttributeModifier.replace("title",new ResourceModel("redo")));
 
+		undo.add(new Image("undoImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"arrow_undo.png")));
 		toolbar.add(undo);
+		redo.add(new Image("redoImg",new PackageResourceReference(DefaultWysiwygToolbar.class,"arrow_redo.png")));
 		toolbar.add(redo);
 
 		this.add(this.toolbar);
@@ -144,3 +163,4 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		this.toolbar.add(AttributeModifier.replace("data-target", JQueryWidget.getSelector(editor)));
 	}
 }
+

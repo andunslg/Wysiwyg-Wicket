@@ -26,7 +26,6 @@ public interface IWysiwygLibrarySettings extends IJavaScriptLibrarySettings
 	CssResourceReference getBootstrapCombinedNoIconsStyleSheetReference();
 	CssResourceReference getBootstrapResponsiveStyleSheetReference();
 	CssResourceReference getEditorStyleSheetReference();
-	CssResourceReference getFontAwesomeStyleSheetReference();
 
 	JavaScriptResourceReference getBootstrapJavaScriptReference();
 	JavaScriptResourceReference getBootstrapWysiwygJavaScriptReference();
