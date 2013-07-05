@@ -71,80 +71,32 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		this.toolbar.setMarkupId("bToolbar");
 
 		//Adding Buttons with localizations
-		ExternalLink fontSize= new ExternalLink("fontSize","#");
-		fontSize.add(AttributeModifier.replace("title",new ResourceModel("fontSize")));
-		toolbar.add(fontSize);
+		toolbar.add(new WebMarkupContainer("fontSize").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.fontSize"))));
 
-		Label huge=new Label("hugh",new ResourceModel("hugh"));
-		Label medium=new Label("medium",new ResourceModel("medium"));
-		Label small=new Label("small",new ResourceModel("small"));
+		toolbar.add(new Label("hugh",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.hugh")));
+		toolbar.add(new Label("medium",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.medium")));
+		toolbar.add(new Label("small",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.small")));
 
-		toolbar.add(huge);
-		toolbar.add(medium);
-		toolbar.add(small);
+		toolbar.add(new WebMarkupContainer("bold").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.bold"))));
+		toolbar.add(new WebMarkupContainer("italic").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.italic"))));
+		toolbar.add(new WebMarkupContainer("strikethrough").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.strikethrough"))));
+		toolbar.add(new WebMarkupContainer("underline").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.underline"))));
 
-		ExternalLink bold= new ExternalLink("bold","#");
-		ExternalLink italic= new ExternalLink("italic","#");
-		ExternalLink strikethrough= new ExternalLink("strikethrough","#");
-		ExternalLink underline= new ExternalLink("underline","#");
+		toolbar.add(new WebMarkupContainer("bullets").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.bullets"))));
+		toolbar.add(new WebMarkupContainer("numbers").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.numbers"))));
+		toolbar.add(new WebMarkupContainer("indent").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.indent"))));
+		toolbar.add(new WebMarkupContainer("reduceIndent").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.reduceIndent"))));
 
-		bold.add(AttributeModifier.replace("title",new ResourceModel("bold")));
-		italic.add(AttributeModifier.replace("title",new ResourceModel("italic")));
-		strikethrough.add(AttributeModifier.replace("title",new ResourceModel("strikethrough")));
-		underline.add(AttributeModifier.replace("title",new ResourceModel("underline")));
+		toolbar.add(new WebMarkupContainer("justifyLeft").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyLeft"))));
+		toolbar.add(new WebMarkupContainer("justifyCenter").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyCenter"))));
+		toolbar.add(new WebMarkupContainer("justifyRight").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyRight"))));
+		toolbar.add(new WebMarkupContainer("justifyFull").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyFull"))));
 
-		toolbar.add(bold);
-		toolbar.add(italic);
-		toolbar.add(strikethrough);
-		toolbar.add(underline);
+		toolbar.add(new WebMarkupContainer("hyperlink").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.hyperlink"))));
+		toolbar.add(new WebMarkupContainer("removeHyperlink").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.removeHyperlink"))));
 
-		ExternalLink bullets= new ExternalLink("bullets","#");
-		ExternalLink numbers= new ExternalLink("numbers","#");
-		ExternalLink indent= new ExternalLink("indent","#");
-		ExternalLink reduceIndent= new ExternalLink("reduceIndent","#");
-
-		bullets.add(AttributeModifier.replace("title",new ResourceModel("bullets")));
-		numbers.add(AttributeModifier.replace("title",new ResourceModel("numbers")));
-		indent.add(AttributeModifier.replace("title",new ResourceModel("indent")));
-		reduceIndent.add(AttributeModifier.replace("title",new ResourceModel("reduceIndent")));
-
-		toolbar.add(bullets);
-		toolbar.add(numbers);
-		toolbar.add(indent);
-		toolbar.add(reduceIndent);
-
-		ExternalLink justifyLeft= new ExternalLink("justifyLeft","#");
-		ExternalLink justifyCenter= new ExternalLink("justifyCenter","#");
-		ExternalLink justifyRight= new ExternalLink("justifyRight","#");
-		ExternalLink justifyFull= new ExternalLink("justifyFull","#");
-
-		justifyLeft.add(AttributeModifier.replace("title",new ResourceModel("justifyLeft")));
-		justifyCenter.add(AttributeModifier.replace("title",new ResourceModel("justifyCenter")));
-		justifyRight.add(AttributeModifier.replace("title",new ResourceModel("justifyRight")));
-		justifyFull.add(AttributeModifier.replace("title",new ResourceModel("justifyFull")));
-
-		toolbar.add(justifyLeft);
-		toolbar.add(justifyCenter);
-		toolbar.add(justifyRight);
-		toolbar.add(justifyFull);
-
-		ExternalLink hyperlink= new ExternalLink("hyperlink","#");
-		ExternalLink removeHyperlink= new ExternalLink("removeHyperlink","#");
-
-		hyperlink.add(AttributeModifier.replace("title",new ResourceModel("hyperlink")));
-		removeHyperlink.add(AttributeModifier.replace("title",new ResourceModel("removeHyperlink")));
-
-		toolbar.add(hyperlink);
-		toolbar.add(removeHyperlink);
-
-		ExternalLink undo= new ExternalLink("undo","#");
-		ExternalLink redo= new ExternalLink("redo","#");
-
-		undo.add(AttributeModifier.replace("title",new ResourceModel("undo")));
-		redo.add(AttributeModifier.replace("title",new ResourceModel("redo")));
-
-		toolbar.add(undo);
-		toolbar.add(redo);
+		toolbar.add(new WebMarkupContainer("undo").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.undo"))));
+		toolbar.add(new WebMarkupContainer("redo").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.redo"))));
 
 		this.add(this.toolbar);
 	}
