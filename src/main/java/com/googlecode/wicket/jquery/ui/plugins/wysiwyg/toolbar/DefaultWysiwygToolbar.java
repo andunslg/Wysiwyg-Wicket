@@ -73,7 +73,7 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		//Adding Buttons with localizations
 		toolbar.add(new WebMarkupContainer("fontSize").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.fontSize"))));
 
-		toolbar.add(new Label("hugh",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.hugh")));
+		toolbar.add(new Label("huge",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.huge")));
 		toolbar.add(new Label("medium",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.medium")));
 		toolbar.add(new Label("small",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.small")));
 
