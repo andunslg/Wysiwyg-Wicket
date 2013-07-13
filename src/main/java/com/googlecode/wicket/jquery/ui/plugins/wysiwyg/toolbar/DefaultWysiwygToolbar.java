@@ -16,22 +16,17 @@
  */
 package com.googlecode.wicket.jquery.ui.plugins.wysiwyg.toolbar;
 
-import com.googlecode.wicket.jquery.core.IJQueryWidget.JQueryWidget;
+import java.util.Locale;
+
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.head.CssHeaderItem;
-import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.image.Image;
-import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.request.resource.PackageResourceReference;
 
-import java.util.Locale;
+import com.googlecode.wicket.jquery.core.IJQueryWidget.JQueryWidget;
 
 /**
  * Provides a default {@link IWysiwygToolbar}
@@ -48,7 +43,8 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 	/**
 	 * Constructor
 	 *
-	 * @param id the markup-id
+	 * @param id
+	 *            the markup-id
 	 */
 	public DefaultWysiwygToolbar(String id)
 	{
@@ -58,8 +54,10 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 	/**
 	 * Constructor
 	 *
-	 * @param id the markup-id
-	 * @param model the {@link org.apache.wicket.model.IModel}
+	 * @param id
+	 *            the markup-id
+	 * @param model
+	 *            the {@link org.apache.wicket.model.IModel}
 	 */
 	public DefaultWysiwygToolbar(String id, IModel<String> model)
 	{
@@ -70,33 +68,33 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		this.toolbar = new WebMarkupContainer("toolbar");
 		this.toolbar.setMarkupId("bToolbar");
 
-		//Adding Buttons with localizations
-		toolbar.add(new WebMarkupContainer("fontSize").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.fontSize"))));
+		// Adding Buttons with localizations
+		this.toolbar.add(new WebMarkupContainer("fontSize").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.fontSize"))));
 
-		toolbar.add(new Label("huge",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.huge")));
-		toolbar.add(new Label("medium",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.medium")));
-		toolbar.add(new Label("small",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.small")));
+		this.toolbar.add(new Label("huge", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.huge")));
+		this.toolbar.add(new Label("medium", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.medium")));
+		this.toolbar.add(new Label("small", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.small")));
 
-		toolbar.add(new WebMarkupContainer("bold").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.bold"))));
-		toolbar.add(new WebMarkupContainer("italic").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.italic"))));
-		toolbar.add(new WebMarkupContainer("strikethrough").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.strikethrough"))));
-		toolbar.add(new WebMarkupContainer("underline").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.underline"))));
+		this.toolbar.add(new WebMarkupContainer("bold").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.bold"))));
+		this.toolbar.add(new WebMarkupContainer("italic").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.italic"))));
+		this.toolbar.add(new WebMarkupContainer("strikethrough").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.strikethrough"))));
+		this.toolbar.add(new WebMarkupContainer("underline").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.underline"))));
 
-		toolbar.add(new WebMarkupContainer("bullets").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.bullets"))));
-		toolbar.add(new WebMarkupContainer("numbers").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.numbers"))));
-		toolbar.add(new WebMarkupContainer("indent").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.indent"))));
-		toolbar.add(new WebMarkupContainer("reduceIndent").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.reduceIndent"))));
+		this.toolbar.add(new WebMarkupContainer("bullets").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.bullets"))));
+		this.toolbar.add(new WebMarkupContainer("numbers").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.numbers"))));
+		this.toolbar.add(new WebMarkupContainer("indent").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.indent"))));
+		this.toolbar.add(new WebMarkupContainer("reduceIndent").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.reduceIndent"))));
 
-		toolbar.add(new WebMarkupContainer("justifyLeft").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyLeft"))));
-		toolbar.add(new WebMarkupContainer("justifyCenter").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyCenter"))));
-		toolbar.add(new WebMarkupContainer("justifyRight").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyRight"))));
-		toolbar.add(new WebMarkupContainer("justifyFull").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyFull"))));
+		this.toolbar.add(new WebMarkupContainer("justifyLeft").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyLeft"))));
+		this.toolbar.add(new WebMarkupContainer("justifyCenter").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyCenter"))));
+		this.toolbar.add(new WebMarkupContainer("justifyRight").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyRight"))));
+		this.toolbar.add(new WebMarkupContainer("justifyFull").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.justifyFull"))));
 
-		toolbar.add(new WebMarkupContainer("hyperlink").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.hyperlink"))));
-		toolbar.add(new WebMarkupContainer("removeHyperlink").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.removeHyperlink"))));
+		this.toolbar.add(new WebMarkupContainer("hyperlink").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.hyperlink"))));
+		this.toolbar.add(new WebMarkupContainer("removeHyperlink").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.removeHyperlink"))));
 
-		toolbar.add(new WebMarkupContainer("undo").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.undo"))));
-		toolbar.add(new WebMarkupContainer("redo").add(AttributeModifier.replace("title",new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.redo"))));
+		this.toolbar.add(new WebMarkupContainer("undo").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.undo"))));
+		this.toolbar.add(new WebMarkupContainer("redo").add(AttributeModifier.replace("title", new ResourceModel("wicket.jquery.ui.wysiwyg.toolbar.redo"))));
 
 		this.add(this.toolbar);
 	}
@@ -107,4 +105,3 @@ public class DefaultWysiwygToolbar extends Panel implements IWysiwygToolbar
 		this.toolbar.add(AttributeModifier.replace("data-target", JQueryWidget.getSelector(editor)));
 	}
 }
-
